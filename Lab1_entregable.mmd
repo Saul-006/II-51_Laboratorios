@@ -1,0 +1,29 @@
+classDiagram 
+direction LR
+
+class Producto {
+    +int IdProducto
+    +string Nombre
+    +decimal Precio
+    +bool Disponible
+}
+
+class Cliente {
+    +int IdCliente
+    +string Nombre
+    +string CorreoPersonal
+    +bool Activo
+    +registrar() : void
+    +editarPerfil() : void
+}
+
+class Venta {
+    +int IdVenta
+    +int IdProducto_FK
+    +int IdCliente_FK
+    +date Fecha
+    +decimal Total
+}
+
+Cliente "1" --> "0..*" Venta : realiza
+Producto "1" --> "0..*" Venta : incluye
