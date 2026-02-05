@@ -6,21 +6,24 @@
 
 <html Lang="en">
   <head>
-    <style>
+    <style> /*estilo del botón*/
         .btn{
-            background-color: rgb(0, 170, 91);
-            color: rgb(255, 255, 255);
-            border: black 3px solid;
-            padding: 10px 20px;
-            border-radius: 10px;
+            background-color: rgb(0, 170, 91); /*color de fondo del btn*/
+            color: rgb(255, 255, 255); /*color de las letras del btn*/
+            border: black 3px solid; /*borde del btn*/
+            padding: 12px 20px; /*sirve para el ancho y largo del btn*/
+            border-radius: 10px; /*borde más redondo o cuadrado*/
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
+            text-decoration: none; /*decoración del texto*/
+            display: inline-block; /*permite definir el ancho y alto del btn*/
+            font-size: 16px; /*tamaño de la letra*/
             margin: 4px 2px;
-            cursor: pointer;
+            cursor: pointer; /*cambia el cursor al pasar por encima del btn*/
         }
-    </style>
+        .btn:hover{
+            background-color: rgb(0, 130, 70);
+        }
+    </style> 
     <meta charset="UTF-8" />  <!--viewport es para añardirle una escala predeterminada a la pagina-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Laboratorio 02</title>
@@ -43,7 +46,8 @@
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
-    </ol>
+    </ol> <!--El elemento ol permite definir listas o 
+    viñetas ordenadas ("Ordered List"), bien con numeración o alfabéticamente.-->
     <h2>Objetivos</h2>
     <!-- lista no ordenada: -->
     <ul>
@@ -83,7 +87,9 @@
                 <td>21</td>
                 <td>Guanacaste</td>
             </tr>
-        </tbody>
+        </tbody> <!--El <tbody> HTML el elemento encapsula un conjunto
+             de filas de tablas (<tr> elementos), indicando que comprenden el 
+                cuerpo de los datos (principales) de una tabla.-->
     </table>
     <a href="https://www.example.com">Visita nuestro sitio web</a>
 
