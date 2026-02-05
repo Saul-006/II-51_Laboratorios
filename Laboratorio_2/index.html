@@ -1,0 +1,99 @@
+<!--El signo " ! " despliega una estructura básica para iniciar html-->
+
+<!--NOTA: puedo poner el mouse encima de cada <> (diamante) para ver la información de este y que hace-->
+
+<!doctype html>  <!--tipo de documento-->
+
+<html Lang="en">
+  <head>
+    <style>
+        .btn{
+            background-color: rgb(88, 0, 98);
+            color: rgb(255, 255, 255);
+            border: black 3px solid;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="UTF-8" />  <!--viewport es para añardirle una escala predeterminada a la pagina-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laboratorio 02</title>
+  </head>
+  <body>
+    <!--
+    class es una lista de las clases del elemento separada por espacios . 
+    Las clases permiten a CSS y Javascript seleccionar y acceder a elementos 
+    específicos a través de los selectores de clase o funciones como el método 
+    document.getElementsByClassName del DOM.
+    -->
+    <button class ="btn">Ver antes/después</button>
+    <h1>Laboratorio 02</h1>
+    <!--Existen escalas h1, h2, h3, h4, h5 y h6 siendo h6 la más pequeña-->
+    <p>Este es el primer laboratorio de la asignatura</p> <!-- p entre el diamante significa párrafo-->
+    <p>En este laboratorio, aprenderemos los conceptos básicos de HTML y CSS</p>
+    <!-- lista ordenada: -->
+    <ol type="A">
+        <!--<li> significa lista-->
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+    <h2>Objetivos</h2>
+    <!-- lista no ordenada: -->
+    <ul>
+        <li>Aprender a crear una página web básica</li>
+        <li>Familiarizarse con las etiquetas HTML</li>
+        <li>Entender el uso de CSS para el estilo</li>
+    </ul>
+    <h2>Tablas</h2>
+    <table> <!--<table> sirve para hacer una tabla-->
+        <!-- encabezado -->
+        <thead>
+            <tr> <!--tr es para definir una fila en una tabla-->
+                <!-- columna del encabezado -->
+                <th>Nombre</th> <!--th es para definir una celda de encabezado en una tabla-->
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <!-- cuerpo de la tabla -->
+        <tbody>
+            <!-- fila -->
+            <tr>
+                <!-- columna del cuerpo -->
+
+                 <!--<a> es para abrir enlaces-->
+                <td><a href="https://www.example.com">Ana</a></td>
+                <td>25</td>
+                <td>Madrid</td>
+            </tr>
+            <tr>
+                <td>Juan</td>
+                <td>30</td>
+                <td>Barcelona</td>
+            </tr>
+            <tr>
+                <td>Pedro</td>
+                <td>28</td>
+                <td>Valencia</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="https://www.example.com">Visita nuestro sitio web</a>
+
+    <!-- etiqueta de enlace -->
+    <a href="https://unsplash.com/es/fotos/las-hojas-y-el-follaje-verdes-crean-una-escena-oscura-y-exuberante-4axNezh03UA"
+        target="_blank"> <!--target= "blank" abre el enlace en una pagina nueva-->
+
+        <img src="https://images.unsplash.com/photo-1746908592757-2c1d682b71db?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Imagen Naturaleza">
+    </a>
+    <p>Para más información, visita el sitio web oficial.</p>
+  </body>
+</html>
