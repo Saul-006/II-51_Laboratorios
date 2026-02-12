@@ -1,0 +1,47 @@
+        .btn{
+            background-color: rgb(10, 207, 115); /*color de fondo del btn*/
+            color: rgb(255, 255, 255); /*color de las letras del btn*/
+            border: black 3px solid; /*borde del btn*/
+            padding: 12px 20px; /*sirve para el ancho y largo del btn*/
+            border-radius: 10px; /*borde más redondo o cuadrado*/
+            text-align: center;
+            text-decoration: none; /*decoración del texto*/
+            display: inline-block; /*permite definir el ancho y alto del btn*/
+            font-size: 16px; /*tamaño de la letra*/
+            margin: 4px 2px;
+            cursor: pointer; /*cambia el cursor al pasar por encima del btn*/
+        }
+        .styled table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+ 
+        .styled th, .styled td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+ 
+        .styled th {
+            background: #0b3c5d;
+            color: white;
+        }
+ 
+        .styled a {
+            color: #0b3c5d;
+            font-weight: bold;
+        }
+        .styled {
+            background-color: #f0f8ff;
+            color: #333333;
+            font-family: Arial, sans-serif;
+        }
+        .styled img {
+            display: block;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            max-width: 100%;
+        }
+        .btn:hover{ /*efecto al pasar el cursor por encima del btn*/
+            background-color: rgb(0, 130, 70);
+        }
