@@ -1,0 +1,70 @@
+classDiagram
+direction TB
+
+    %% Entidades (Objetos de Datos)
+    class Usuario {
+        +String Nombre
+        +String Correo
+        +String Cedula
+        +String Password
+    }
+
+    class Producto {
+        +int IdProducto
+        +String Nombre
+        +double Precio
+        +int Cantidad
+        +String Categoria
+        +String Descripcion
+    }
+
+    %% Capa de Datos (Lógica y SQL)
+    class Conexion {
+        +SqlConnection conectar
+    }
+
+    class UsuarioDatos {
+        -Conexion conexion
+        +bool Login(Usuario user)
+    }
+
+    class ProductoDatos {
+        -Conexion conexion
+        +void Insertar(Producto p)
+        +DataTable Mostrar()
+    }
+
+    %% Formularios (Interfaz)
+    class frmInicioSesion {
+        -UsuarioDatos datos
+        -button1_Click()
+        -btnSalir_Click()
+    }
+
+    class frmProductos {
+        -ProductoDatos datos
+        -Form2_Load()
+        -btnGuardar_Click()
+        -btnMostrar_Click()
+        +Limpiar()
+    }
+
+    %% Relaciones de dependencia y uso
+    frmInicioSesion ..> UsuarioDatos : usa
+    frmInicioSesion ..> Usuario : crea objeto
+    frmProductos ..> ProductoDatos : usa
+    frmProductos ..> Producto : crea objeto
+    UsuarioDatos --> Conexion : contiene
+    ProductoDatos --> Conexion : contiene
+    UsuarioDatos ..> Usuario : procesa
+    ProductoDatos ..> Producto : procesa
+
+    %% Base de Datos (Representación lógica)
+    class SQL_Database {
+        <<Database>>
+        Table Usuarios
+        Table Productos
+    }
+
+    UsuarioDatos --|> SQL_Database : SELECT
+    ProductoDatos --|> SQL_Database : INSERT / SELECT
