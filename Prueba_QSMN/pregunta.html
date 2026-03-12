@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pregunta importante</title>
+<link rel="stylesheet" href="./estilos.css">
+
+<style>
+body{
+    background-color: pink;
+    text-align: center;
+    font-family: Arial;
+}
+
+button{
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#no{
+    position: absolute;
+}
+</style>
+
+<script>
+
+function moverBoton(){
+    let boton = document.getElementById("no");
+
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    boton.style.left = x + "px";
+    boton.style.top = y + "px";
+}
+
+</script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="titleqsmn" class="title">¿Quieres ser mi novia? 💖</h1>
+        <!-- GIF -->
+        <img src="gato-enamorado.gif" width="250">
+        <br><br>
+        <div id="btnSN">
+            <button onclick="location.href='resp_si.html'">SI</button>
+            <button id="no" onmouseover="moverBoton()">NO</button>
+        </div>
+    </div>
+</body>
+</html>

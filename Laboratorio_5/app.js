@@ -10,6 +10,10 @@ const txtSearch = document.getElementById("txtSearch");
 const btnLoad = document.getElementById("btnLoad");
 const tbody = document.getElementById("tbodyStudents");
 
+window.onload = () => {
+    consultarEstudiantes();
+}
+
 btnLoad.addEventListener("click", async () => consultarEstudiantes());
 
 // function de flecha (es una forma de definir funciones anónimas y asignarlas a una variable)
@@ -45,17 +49,24 @@ const consultarEstudiantes = async () => {
     return;
   }
 
+  // Limpiando y llenando la tabla con los datos obtenidos
   tbody.innerHTML = "";
 
   // data es un arreglo de objetos, cada objeto representa un estudiante
   data.forEach((r) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
+    const tr = document.createElement("tr"); // <tr></tr>
+    // si quiero ocultar visualmente el id pero si quiero verlo en el codigo puedo añadir una línea como esta: tr.setAttribute("data-id", r.id);
+    tr.innerHTML = ` 
         <td>${r.id ?? ""}</td>
         <td>${r.nombre ?? ""}</td>
         <td>${r.apellido ?? ""}</td>
         <td>${r.correo ?? ""}</td>
         <td>${r.carrera ?? ""}</td>
+        <td>
+        <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
+        <button class="btnActualizar" data-id="${r.id}">Actualizar</button>
+        </td>
+
       `;
     tbody.appendChild(tr);
   });
