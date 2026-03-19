@@ -44,6 +44,35 @@ tbody.addEventListener("click", async (event) => {
   await eliminarEstudiante(id);
 });
 
+// Editar - consulto por el id - 
+// lleno el formulario con los datos del estudiante - 
+// cambio el botón de agregar por actualizar - 
+// al hacer click en actualizar, actualizo el estudiante en la base de datos
+tbody.addEventListener("click", async (event) => {
+  const target = event.target;
+  if (!target.classList.contains("btnEditar")) return;
+
+  const id = target.getAttribute("data-id");
+
+  const { data, error } = await supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera").eq("id", id).single();
+
+  if (error) {
+    console.error(error);
+    alert("Error al cargar estudiante")
+    return;
+  }
+
+  txtId.value = data.id;
+  txtNombre.value = data.nombre;
+  txtApellido.value = data.apellido;
+  txtCorreo.value  = data.correo;
+  txtCarrera.value = data.carrera;
+
+  btnAdd.textContent = "Actualizar";
+
+  // await actualizarEstudiante(id);
+});
+/*
 // funcion de flecha
 // const consultarEstudiantes = async () => {};
 // funcion tradicional
@@ -56,6 +85,7 @@ tbody.addEventListener("click", async (event) => {
 // y = 40; // error, no se puede reasignar una constante
 // var z = 50;
 // var z = 60; // no error, var permite redeclarar la misma variable
+*/
 
 //****************************************
 //Funciones
@@ -93,7 +123,7 @@ const consultarEstudiantes = async () => {
         <td>${r.correo ?? ""}</td>
         <td>${r.carrera ?? ""}</td>
         <td>
-          <button class="btnActualizar" data-id="${r.id}">Actualizar</button>
+          <button class="btnEditar" data-id="${r.id}">Editar</button>
           <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
         </td>
       `;
@@ -142,9 +172,11 @@ const eliminarEstudiante = async (id) => {
 };
 
 const limpiarFormulario = () => {
+  txtId.value = "";
   txtNombre.value = "";
   txtApellido.value = "";
   txtCorreo.value = "";
   txtCarrera.value = "";
+  btnAdd.textContent = "Agregar";
 };
 

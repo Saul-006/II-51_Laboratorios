@@ -204,9 +204,21 @@ table button {
   color: #fff;
 }
 
-.btnActualizar {
+.btnEliminar:active {
+  transform: translateY(1px);
+  background-color: #c23232;
+  color: #d1d1d1;
+}
+
+.btnEditar {
   background: var(--accent3);
   color: #05323A;
+}
+
+.btnEditar:active {
+  transform: translateY(1px);
+  background-color: #4daca8;
+  color: #021316;
 }
 
 .field.buttons {
@@ -245,7 +257,8 @@ table button {
 }
 
 .btn-inline:active {
-  transform: translateY(-50%);
+  transform: translateY(-45%);
+  background-color: #e6e6e6;
 }
 
 /*
