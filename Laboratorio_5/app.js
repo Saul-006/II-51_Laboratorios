@@ -6,7 +6,7 @@ import { supabase } from "./supabase.js";
 // Referencias a elementos del DOM
 //****************************************
 // Botones
-const btnClean = document.getElementById("btnClean");
+const btnClear = document.getElementById("btnClear");
 const btnAdd = document.getElementById("btnAdd");
 const btnCancel = document.getElementById("btnCancel");
 const btnLoad = document.getElementById("btnLoad");
@@ -29,6 +29,20 @@ window.onload = () => {
 //****************************************
 btnLoad.addEventListener("click", async () => consultarEstudiantes());
 btnAdd.addEventListener("click", async () => guardarEstudiante());
+btnClear.addEventListener("click", async () => {
+  txtSearch.value = "";
+  await consultarEstudiantes();
+});
+btnCancel.addEventListener("click", async () => limpiarFormulario());
+
+tbody.addEventListener("click", async (event) => {
+  const target = event.target;
+  if (!target.classList.contains("btnEliminar")) return;
+
+  const id = target.getAttribute("data-id");
+
+  await eliminarEstudiante(id);
+});
 
 // funcion de flecha
 // const consultarEstudiantes = async () => {};
@@ -52,7 +66,7 @@ const consultarEstudiantes = async () => {
   const search = txtSearch.value.trim() || ""; // si el valor es vacío, se asigna una cadena vacía
   const query = supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera");
 
-  // SEBASTIAN JESUS
+  // filtros
   if (search.length > 0) {
     // query.ilike("nombre", `%${search}%`);
     query.or(`nombre.ilike.%${search}%,apellido.ilike.%${search}%`);
@@ -126,4 +140,11 @@ const eliminarEstudiante = async (id) => {
     consultarEstudiantes();
   }
 };
- 
+
+const limpiarFormulario = () => {
+  txtNombre.value = "";
+  txtApellido.value = "";
+  txtCorreo.value = "";
+  txtCarrera.value = "";
+};
+

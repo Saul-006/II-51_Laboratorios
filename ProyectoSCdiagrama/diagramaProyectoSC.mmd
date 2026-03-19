@@ -1,70 +1,73 @@
 classDiagram
-direction TB
 
-    %% Entidades (Objetos de Datos)
-    class Usuario {
-        +String Nombre
-        +String Correo
-        +String Cedula
-        +String Password
-    }
-
+    %% ─────────────── MODELOS ───────────────
     class Producto {
-        +int IdProducto
-        +String Nombre
-        +double Precio
-        +int Cantidad
-        +String Categoria
-        +String Descripcion
+        +string Codigo
+        +string Nombre
+        +string Descripcion
+        +DateTime FechaIngreso
+        +DateTime FechaCaducidad
+        +string AgregadoPor
     }
 
-    %% Capa de Datos (Lógica y SQL)
-    class Conexion {
-        +SqlConnection conectar
+    class Usuario {
+        +string Nombre
+        +string Contrasena
+        +string Rol
+        +int ProductosAgregados
     }
 
-    class UsuarioDatos {
-        -Conexion conexion
-        +bool Login(Usuario user)
+    %% ─────────────── DATOS ───────────────
+    class DatosSistema {
+        +static List~Usuario~ usuarios
+        +static List~Producto~ productos
     }
 
-    class ProductoDatos {
-        -Conexion conexion
-        +void Insertar(Producto p)
-        +DataTable Mostrar()
+    %% ─────────────── FORMULARIOS ───────────────
+    class frmLogin {
+        +frmLogin()
+        -frmLogin_Load()
+        -btnInicioSesion_Click()
     }
 
-    %% Formularios (Interfaz)
-    class frmInicioSesion {
-        -UsuarioDatos datos
-        -button1_Click()
-        -btnSalir_Click()
-    }
-
-    class frmProductos {
-        -ProductoDatos datos
-        -Form2_Load()
-        -btnGuardar_Click()
+    class frmGerente {
+        -Usuario usuarioActual
+        +frmGerente()
+        +frmGerente(Usuario u)
+        -frmGerente_Load()
+        -btnAgregar_Click()
+        -btnEliminar_Click()
+        -btnEditar_Click()
+        -btnDesempeno_Click()
         -btnMostrar_Click()
-        +Limpiar()
+        -btnCerrarSesion_Click()
+        -btnSalir_Click()
+        +CargarProductos()
     }
 
-    %% Relaciones de dependencia y uso
-    frmInicioSesion ..> UsuarioDatos : usa
-    frmInicioSesion ..> Usuario : crea objeto
-    frmProductos ..> ProductoDatos : usa
-    frmProductos ..> Producto : crea objeto
-    UsuarioDatos --> Conexion : contiene
-    ProductoDatos --> Conexion : contiene
-    UsuarioDatos ..> Usuario : procesa
-    ProductoDatos ..> Producto : procesa
-
-    %% Base de Datos (Representación lógica)
-    class SQL_Database {
-        <<Database>>
-        Table Usuarios
-        Table Productos
+    class frmEmpleado {
+        -Usuario usuarioActual
+        +frmEmpleado()
+        +frmEmpleado(Usuario u)
+        -frmEmpleado_Load()
+        -btnAgregar_Click()
+        -btnCerrarSesion_Click()
+        -btnSalir_Click()
+        +CargarProductos()
     }
 
-    UsuarioDatos --|> SQL_Database : SELECT
-    ProductoDatos --|> SQL_Database : INSERT / SELECT
+    %% ─────────────── RELACIONES ───────────────
+    DatosSistema "1" o-- "many" Usuario : contiene
+    DatosSistema "1" o-- "many" Producto : contiene
+
+    frmLogin ..> DatosSistema : usa
+    frmLogin ..> frmGerente : abre si Gerente
+    frmLogin ..> frmEmpleado : abre si Empleado
+
+    frmGerente --> Usuario : usuarioActual
+    frmGerente ..> DatosSistema : usa
+    frmGerente ..> Producto : crea
+
+    frmEmpleado --> Usuario : usuarioActual
+    frmEmpleado ..> DatosSistema : usa
+    frmEmpleado ..> Producto : crea
