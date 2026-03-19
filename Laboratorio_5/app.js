@@ -13,12 +13,15 @@ const btnLoad = document.getElementById("btnLoad");
 // Campo de búsqueda
 const txtSearch = document.getElementById("txtSearch");
 //Formulario
+const txtId = document.getElementById("txtId");
 const txtNombre = document.getElementById("txtNombre");
 const txtApellido = document.getElementById("txtApellido");
 const txtCorreo = document.getElementById("txtCorreo");
 const txtCarrera = document.getElementById("txtCarrera");
+const txtFechaNac = document.getElementById("txtFechaNac");
 // Tabla
 const tbody = document.getElementById("tbodyStudents");
+const tituloForm = document.getElementById("tituloForm");
 
 //Consultar estudiantes al cargar la página
 window.onload = () => {
@@ -44,9 +47,9 @@ tbody.addEventListener("click", async (event) => {
   await eliminarEstudiante(id);
 });
 
-// Editar - consulto por el id - 
-// lleno el formulario con los datos del estudiante - 
-// cambio el botón de agregar por actualizar - 
+// Editar - consulto por el id -
+// lleno el formulario con los datos del estudiante -
+// cambio el botón de agregar a actualizar -
 // al hacer click en actualizar, actualizo el estudiante en la base de datos
 tbody.addEventListener("click", async (event) => {
   const target = event.target;
@@ -54,24 +57,26 @@ tbody.addEventListener("click", async (event) => {
 
   const id = target.getAttribute("data-id");
 
-  const { data, error } = await supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera").eq("id", id).single();
+  // 1. Consultar el estudiante por su id
+  const { data, error } = await supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera,fecha").eq("id", id).single();
 
   if (error) {
     console.error(error);
-    alert("Error al cargar estudiante")
+    Swal.fire("Error", "No se pudo cargar el estudiante", "error");
     return;
   }
-
+  // 2. Llenar el formulario con los datos del estudiante
   txtId.value = data.id;
   txtNombre.value = data.nombre;
   txtApellido.value = data.apellido;
-  txtCorreo.value  = data.correo;
+  txtCorreo.value = data.correo;
   txtCarrera.value = data.carrera;
-
+  txtFechaNac.value = data.fecha;
+  // 3. Cambiar el botón de agregar a actualizar
   btnAdd.textContent = "Actualizar";
-
-  // await actualizarEstudiante(id);
+  tituloForm.textContent = "Editar Estudiante";
 });
+
 /*
 // funcion de flecha
 // const consultarEstudiantes = async () => {};
@@ -94,7 +99,7 @@ const consultarEstudiantes = async () => {
   // usamos el cliente de Supabase para hacer una consulta a la tabla "estudiantes"
   // json: { "data": [], "error": null }
   const search = txtSearch.value.trim() || ""; // si el valor es vacío, se asigna una cadena vacía
-  const query = supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera");
+  const query = supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera,fecha");
 
   // filtros
   if (search.length > 0) {
@@ -122,6 +127,7 @@ const consultarEstudiantes = async () => {
         <td>${r.apellido ?? ""}</td>
         <td>${r.correo ?? ""}</td>
         <td>${r.carrera ?? ""}</td>
+        <td>${r.fecha ?? ""}</td>
         <td>
           <button class="btnEditar" data-id="${r.id}">Editar</button>
           <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
@@ -138,35 +144,59 @@ const guardarEstudiante = async () => {
     apellido: txtApellido.value.trim(),
     correo: txtCorreo.value.trim(),
     carrera: txtCarrera.value.trim(),
+    fecha: txtFechaNac.value
   };
 
   if (!estudiante.nombre || !estudiante.apellido || !estudiante.correo || !estudiante.carrera) {
-    alert("Por favor, complete todos los campos");
+    Swal.fire("Campos incompletos", "Por favor llene todos los campos", "warning");
     return;
   }
 
-  const { error } = await supabase.from("estudiantes").insert([estudiante]);
+  if (txtId.value) {
+    // Actualizar estudiante existente
+    const { error } = await supabase.from("estudiantes").update([estudiante]).eq("id", txtId.value);
 
-  if (error) {
-    console.error(error);
-    alert("Error guardando estudiante");
-    return;
+    if (error) {
+      console.error(error);
+      Swal.fire("Error", "No se pudo actualizar el estudiante", "error");
+      return;
+    }
+    Swal.fire("Actualizado", "El estudiante fue actualizado correctamente", "success");
+
+  } else {
+    // Agregar nuevo estudiante
+    const { error } = await supabase.from("estudiantes").insert([estudiante]);
+
+    if (error) {
+      console.error(error);
+      Swal.fire("Error", "No se pudo guardar el estudiante", "error");
+      return;
+    }
   }
-
-  alert("Estudiante guardado exitosamente");
-  // Limpiar el formulario
-  txtNombre.value = "";
+  Swal.fire("Guardado", "Estudiante agregado correctamente", "success");
+  limpiarFormulario();
   consultarEstudiantes();
 };
 
 const eliminarEstudiante = async (id) => {
-  if (!confirm("¿Está seguro de eliminar este estudiante?")) return;
+  const result = await Swal.fire({
+  title: "¿Estás seguro?",
+  text: "No podrás revertir esto",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "Sí, eliminar",
+  cancelButtonText: "Cancelar"
+});
+
+if (!result.isConfirmed) return;
+
   const { error } = await supabase.from("estudiantes").delete().eq("id", id);
 
   if (error) {
     console.error(error);
-    alert("Error al eliminar");
+    Swal.fire("Error", "No se pudo eliminar", "error");
   } else {
+    Swal.fire("Eliminado", "El estudiante fue eliminado correctamente", "success");
     consultarEstudiantes();
   }
 };
@@ -177,6 +207,7 @@ const limpiarFormulario = () => {
   txtApellido.value = "";
   txtCorreo.value = "";
   txtCarrera.value = "";
+  txtFechaNac.value = "";
   btnAdd.textContent = "Agregar";
+  tituloForm.textContent = "Agregar Estudiantes";
 };
-

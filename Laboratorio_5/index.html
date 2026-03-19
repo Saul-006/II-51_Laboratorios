@@ -10,38 +10,46 @@
     <div class="container">
       <!-- header -->
       <div class="header">
-        <div class="header-title">Laboratorio 6 - Estudiantes</div>
+        <div class="header-title">Laboratorio 06 - Estudiantes</div>
         <div class="header-subtitle">Consulta de estudiantes</div>
       </div>
 
       <div class="card">
+          <h1 id="tituloForm" class="header-title">Agregar Estudiantes</h1>
           <div class="controls">
             <input type="hidden" id="txtId" />
             <div class="field">
               <label for="txtNombre">Nombre:</label>
-              <input type="text" id="txtNombre" placeholder="Ingrese el nombre del estudiante" />
+              <input type="text" id="txtNombre" placeholder="Ingrese el nombre del estudiante" required />
             </div>
             <div class="field">
               <label for="txtApellido">Apellido:</label>
-              <input type="text" id="txtApellido" placeholder="Ingrese el apellido del estudiante" />
+              <input type="text" id="txtApellido" placeholder="Ingrese el apellido del estudiante" required />
             </div>
             <div class="field">
               <label for="txtCorreo">Correo:</label>
               <input type="email" id="txtCorreo" placeholder="Ingrese el correo del estudiante" />
             </div>
+
             <div class="field">
               <label for="txtCarrera">Carrera:</label>
               <input type="text" id="txtCarrera" placeholder="Ingrese la carrera del estudiante" />
             </div>
+
+            <div class="field">
+              <label for="txtFechaNac">Fecha Nacimiento:</label>
+              <input type="date" id="txtFechaNac" placeholder="Ingrese la fecha de nacimiento del estudiante" />
+            </div>
+
             <div class="field buttons">
-              <button id="btnAdd" class="btn btn-primary" type="submit">Agregar</button>
-              <button id="btnCancel" class="btn btn-secondary" type="button">Cancelar</button>
+              <button id="btnAdd" class="btn btn-success" type="submit">Agregar</button>
+              <button id="btnCancel" class="btn btn-success" type="button">Cancelar</button>
             </div>
           </div>
       </div>
 
       <!-- controles -->
-             <div class="card">
+      <div class="card">
         <div class="field">
           <div class="input-with-action">
             <input type="text" id="txtSearch" placeholder="Buscar estudiante por nombre" />
@@ -62,6 +70,7 @@
                 <th>Apellido</th>
                 <th>Correo</th>
                 <th>Carrera</th>
+                <th>Fecha Nacimiento</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -70,7 +79,7 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./app.js" type="module"></script>
   </body>
 </html>
- 

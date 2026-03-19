@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  max-width: 980px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
 }
@@ -259,6 +259,32 @@ table button {
 .btn-inline:active {
   transform: translateY(-45%);
   background-color: #e6e6e6;
+}
+
+#btnAdd {
+  color: #05323A;
+  background-color: #10CFC8;
+}
+
+#btnAdd:active {
+  color: #021316;
+  background-color: #0b9793;
+}
+
+#btnCancel {
+  background-color: #eeeff0;
+}
+
+#btnCancel:active {
+  background-color: #8b8b8b;
+}
+
+#btnLoad:active {
+  background-color: #0b9793;
+}
+
+#tituloForm {
+  margin-bottom: 30px;
 }
 
 /*
