@@ -5,7 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0) // Aquí podríamos agregar más estados para manejar el CRUD de estudiantes, por ejemplo: 
 
   return (
     <>
@@ -16,13 +16,16 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Get started</h1>
+          <h1>Empezar</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Edita <code>src/App.jsx</code> y guarda para probar <code>HMR</code>
           </p>
         </div>
         <button
           className="counter"
+
+          // onClick sirve para sirve para ejecutar una función o código específico cuando 
+          // un usuario hace clic (presiona y suelta) sobre un elemento HTML, como un botón, enlace o imagen
           onClick={() => setCount((count) => count + 1)}
         >
           Conteo {count}
@@ -36,19 +39,19 @@ function App() {
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#documentation-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+          <h2>Documentación</h2>
+          <p>Tus preguntas, respondidas</p>
           <ul>
             <li>
               <a href="https://vite.dev/" target="_blank">
                 <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
+                Explora Vite
               </a>
             </li>
             <li>
               <a href="https://react.dev/" target="_blank">
                 <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
+                Leer más
               </a>
             </li>
           </ul>
@@ -57,8 +60,8 @@ function App() {
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#social-icon"></use>
           </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
+          <h2>Conéctate con nosotros</h2>
+          <p>Únete a la comunidad de Vite</p>
           <ul>
             <li>
               <a href="https://github.com/vitejs/vite" target="_blank">
