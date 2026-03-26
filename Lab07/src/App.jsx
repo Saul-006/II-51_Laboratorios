@@ -78,7 +78,7 @@ function App() {
     loadStudents();
   }, []);
 
-  /*
+  /* 
   useEffect(() => {
     loadStudents(page);
   }, [page]);
