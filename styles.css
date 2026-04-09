@@ -23,7 +23,7 @@ body {
     gap: 20px; 
 
     background: rgba(255, 255, 255, 0.05);
-    padding: 40px;
+    padding: 80px; /* ancho de la caja */
     border-radius: 20px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
@@ -94,21 +94,57 @@ ul {
     --bg-color: #ff0000;
 }
 
-button {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    backdrop-filter: blur(5px);
+.item:nth-child(4) {
+    --bg-color: #25d366;
 }
 
+button {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 2px solid transparent;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+    
+    /* truco para borde degradado */
+    background-clip: padding-box;
+    position: relative;
+}
+
+/* borde degradado */
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+
+    /* Webkit (Chrome, Edge, Safari) */
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+
+    /* Estándar */
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+/* hover elegante */
 button:hover {
-    background: #00c6ff;
-    transform: scale(1.1);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
+}
+
+/* efecto al hacer click */
+button:active {
+    transform: scale(0.95);
 }
 
 .botones {
@@ -128,4 +164,8 @@ footer {
 
 .lab {
     margin-bottom: 40px;
+}
+
+.seleccion {
+    margin-bottom: 30px;
 }
