@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorios</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorios</title>
+
+  <!-- Font Awesome (para iconos) -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>Laboratorios UC</h1>
-    <h5>Saúl González López</h5>
-    <p>Bienvenido a la página principal de los laboratorios del curso II-51</p>
-    <p>A continuación quedan a disposición los enlaces de cada laboratorio:</p>
-    <a href="Laboratorio_2/">Laboratorio 02</a>
-    <a href="Laboratorio_3/">Laboratorio 03</a>
-    <a href="Laboratorio_4/">Laboratorio 04</a>
-    <!-- <a href="Lab06/">Laboratorio 05</a> -->
-    <a href="Laboratorio_5/">Laboratorio 06</a>
+    <div class="main"> 
+  <h1>Laboratorios UC</h1>
+  <h5>Saúl González López</h5>
+
+  <p>Bienvenido a la página principal de los laboratorios del curso II-51</p>
+  <p>Selecciona un laboratorio:</p>
+
+  <div class="botones">
+    <button onclick="ir('Laboratorio_2/')">Laboratorio 02</button>
+    <button onclick="ir('Laboratorio_3/')">Laboratorio 03</button>
+    <button onclick="ir('Laboratorio_4/')">Laboratorio 04</button>
+    <button onclick="ir('Laboratorio_5/')">Laboratorio 06</button>
+  </div>
+
+  <!-- Redes sociales -->
+      <ul>
+          <li id="facebook" class="item">
+              <a href="https://www.facebook.com/share/1CuMUnnkdd/" target="_blank">
+                  <i class="fab fa-facebook-f icon"></i>
+                </a>
+            </li>
+            
+            <li id="instagram" class="item">
+                <a href="https://www.instagram.com/saulgonzalezl_/" target="_blank">
+                    <i class="fab fa-instagram icon"></i>
+                </a>
+            </li>
+
+            <li id="youtube" class="item">
+                <a href="https://www.youtube.com/@saulmacho006" target="_blank">
+                    <i class="fab fa-youtube icon"></i>
+                </a>
+            </li>
+
+        </ul>
+        </div>
+
+    </html>
+    <footer>
+    <p>&copy; 2026 Todos los derechos de autor a Saúl González López</p>
+  </footer>
+  <script src="script.js"></script>
 </body>
-</html>
