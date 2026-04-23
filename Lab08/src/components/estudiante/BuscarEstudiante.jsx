@@ -9,8 +9,8 @@ function BuscarEstudiante({ search, setSearch, handleSearch, handleClearSearch }
           onChange={(e) => setSearch(e.target.value)}
           />
 
-        <button onClick={handleSearch}>Buscar</button>
-        <button onClick={handleClearSearch}>Limpiar</button>
+        <button className="btnLoad" onClick={handleSearch}>Buscar</button>
+        <button className="btnClear" onClick={handleClearSearch}>Limpiar</button>
       </div>
     </>
     );

@@ -287,6 +287,38 @@ table button {
   margin-bottom: 30px;
 }
 
+.btnLoad {
+  background-color: #10CFC8;
+  color: #05323A;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  font-style: normal;
+  font: bold 13px copperplate, sans-serif;
+  border: #05323A 1px solid;
+  border-radius: 20%;
+}
+
+.btnLoad:active {
+  background-color: #0b9793;
+  color: #021316;
+}
+
+.btnClear {
+  background-color: #eeeff0;
+  color: #0f172a;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  font-style: normal;
+  font: bold 13px copperplate, sans-serif;
+  border: #05323A 1px solid;
+  border-radius: 20%;
+}
+
+.btnClear:active {
+  background-color: #8b8b8b;
+  color: #0f172a;
+}
+
 /*
 DRY (Don't Repeat Yourself) - Evitar la repetición de código es una buena práctica en programación. En este caso, las clases `.btnEliminar` y `.btnActualizar` comparten muchas propiedades CSS similares. Para evitar la repetición, podríamos crear una clase base para los botones y luego extenderla para cada tipo específico. Aquí hay un ejemplo de cómo podríamos hacerlo:
 */
