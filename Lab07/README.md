@@ -20,3 +20,4 @@ node_modules <- Carpeta de paquetes
 * Instalar paquetes: npm install
 * Ejecutar en modo desarrollador o serverlocal: npm run dev
 * Hacer el producto final de react: npm run build
+<!-- * NOTA: Cuando me de error el comando -   npm run build   - en la terminal tengo que ejecutar este lo más probable: -   npm install @supabase/supabase-js@latest   - -->
